@@ -1,0 +1,19 @@
+{
+  "name": "dash",
+  "version": "0.0.1",
+  "authors": [
+    "Sergey Miheev <sergmix07@gmail.com>"
+  ],
+  "description": "dash",
+  "license": "MIT",
+    "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8"
+  }
+}

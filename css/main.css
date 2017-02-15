@@ -1,0 +1,16 @@
+html {
+    background-color: gray;
+}
+
+.column {
+    background-color: white;
+    width: 33%;
+    float: left;
+    margin: 10px;
+}
+
+.command {
+    width: 100%;
+    background-color: white;
+    margin: 10px;
+}
