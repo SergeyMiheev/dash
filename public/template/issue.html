@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Issue details</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <ul>
+        <li>Id: {{issue.id}}</li>
+        <li>Task: {{issue.task}}</li>
+        <li>
+            Status:
+            <span ng-class="{'text-success' : issue.status === 'SUCCESS', 'text-danger' : issue.status === 'ERROR'}">
+                {{issue.status}}
+            </span>
+        </li>
+        <li>Name: {{issue.name}}</li>
+        <li>Responsible: {{issue.responsible}}</li>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Diffs</h2>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Phid</td>
+                    <td>Status</td>
+                    <td>Branch</td>
+                    <td>Repository name</td>
+                    <td>Migrations</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="diff in issue.diffList">
+                    <td>{{diff.id}}</td>
+                    <td>{{diff.phid}}</td>
+                    <td ng-class="{'text-success' : diff.status === 'SUCCESS', 'text-danger' : diff.status === 'ERROR'}">
+                        {{diff.status}}
+                    </td>
+                    <td>{{diff.branch}}</td>
+                    <td>{{diff.repositoryName}}</td>
+                    <td>
+                        <ul>
+                            <li ng-repeat="migration in diff.migrations">
+                                {{migration.name}}
+                                <span ng-class="{'text-success' : migration.status === 'SUCCESS', 'text-danger' : migration.status === 'ERROR'}">
+                                    {{migration.status}}
+                                </span>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>
