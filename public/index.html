@@ -12,6 +12,7 @@
     <script src="/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/controllers.js"></script>
 </head>
@@ -28,7 +29,7 @@
             <div class="col-md-5">
                 <h2>Revisions</h2>
 
-                <table class="table table-hover">
+                <table class="table table-hover revisions">
                     <thead>
                         <tr>
                             <td>Revision</td>
@@ -36,9 +37,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="rev in revisions" ng-click="selectRevision(rev.id)" style="cursor: pointer">
+                        <tr ng-repeat="rev in revisions"
+                            ng-click="selectRevision(rev.id)"
+                            data-id="{{rev.id}}"
+                            style="cursor: pointer">
                             <td>{{rev.id}}</td>
-                            <td ng-class="{'text-success' : rev.status === 'SUCCESS', 'text-danger' : rev.status === 'ERROR'}">
+                            <td ng-class="{'text-success' : rev.status === 'SUCCESS', 'text-danger' : rev.status === 'ERROR', 'text-info' : rev.status === 'PROCESS'}">
                                 {{rev.status}}
                             </td>
                             <td>{{rev.createdAt}}</td>
@@ -50,7 +54,7 @@
             <div class="col-md-7">
                 <h2>Issues</h2>
 
-                <table class="table table-hover">
+                <table class="table table-hover issues">
                     <thead>
                     <tr>
                         <td>Id</td>
@@ -61,10 +65,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="rev in issues" ng-click="selectIssue(rev.id)">
+                    <tr ng-repeat="rev in issues"
+                        ng-click="selectIssue(rev.id)"
+                        style="cursor: pointer">
                         <td>{{rev.id}}</td>
                         <td width="15%">{{rev.task}}</td>
-                        <td ng-class="{'text-success' : rev.status === 'SUCCESS', 'text-danger' : rev.status === 'ERROR'}">
+                        <td ng-class="{'text-success' : rev.status === 'SUCCESS', 'text-danger' : rev.status === 'ERROR', 'text-info' : rev.status === 'PROCESS'}">
                             {{rev.status}}
                         </td>
                         <td>{{rev.name}}</td>
@@ -93,7 +99,7 @@
                     <tbody>
                     <tr ng-repeat="rev in tasks">
                         <td>{{rev.id}}</td>
-                        <td ng-class="{'text-success' : rev.status === 'SUCCESS', 'text-danger' : rev.status === 'ERROR'}">
+                        <td ng-class="{'text-success' : rev.status === 'SUCCESS', 'text-danger' : rev.status === 'ERROR', 'text-info' : rev.status === 'PROCESS'}">
                             {{rev.status}}
                         </td>
                         <td>{{rev.locked ? "true" : "false"}}</td>
@@ -113,3 +119,10 @@
         </div>
     </div>
 </body>
+
+<script>
+    $("table.revisions > tbody, table.issues tbody").on("click", "tr", function () {
+        $(this).parent().children('tr').removeClass('success');
+        $(this).addClass('success');
+    });
+</script>

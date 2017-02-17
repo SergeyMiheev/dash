@@ -15,6 +15,31 @@
         <li>Responsible: {{issue.responsible}}</li>
     </ul>
 
+    <div class="row" ng-if="issue.errors.length > 0">
+        <div class="col-md-12">
+            <h2>Errors</h2>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Message</td>
+                    <td>Class</td>
+                    <td>Line</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="error in issue.errors">
+                    <td>{{error.id}}</td>
+                    <td>{{error.message}}</td>
+                    <td>{{error.class}}</td>
+                    <td>{{error.line}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <h2>Diffs</h2>
