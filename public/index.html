@@ -45,6 +45,7 @@
                         <thead>
                         <tr>
                             <td>Id</td>
+                            <td>Type</td>
                             <td>Status</td>
                             <td>Is Locked</td>
                             <td>Next At</td>
@@ -56,6 +57,7 @@
                         <tbody>
                         <tr ng-repeat="rev in tasks">
                             <td>{{rev.id}}</td>
+                            <td>{{rev.type}}</td>
                             <td ng-class="{'text-success' : rev.status === 'SUCCESS', 'text-danger' : rev.status === 'ERROR', 'text-info' : rev.status === 'PROCESS'}">
                                 {{rev.status}}
                             </td>

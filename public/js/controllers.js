@@ -8,7 +8,6 @@ app.controller('dashCtrl', ['$scope', 'api', '$uibModal', function ($scope, api,
 
         api.post('getIssuesList', {'revisionId': revisionId}).then(function (data) {
             $scope.issues = data;
-            $scope.$apply();
         }).catch(function (error) {
             errorDialog(error.hasOwnProperty('message') ? error['message'] : error);
         });
@@ -79,7 +78,7 @@ app.controller('dashCtrl', ['$scope', 'api', '$uibModal', function ($scope, api,
             getTaskList(),
             getRevisionsList()
         ]).then(function () {
-            $scope.$apply();
+            // nothing
         }).catch(function (error) {
             errorDialog(error.hasOwnProperty('message') ? error['message'] : error);
         });
